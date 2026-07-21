@@ -30,3 +30,16 @@
 ## License
 
 MIT. Nintendo、Nintendo Labo、Apple、GitHub等の名称・商標は各権利者に帰属します。
+
+## WebView preview
+
+The interactive implementation is CLJS + Reagent + shadow-cljs, with
+component styles extracted by shadow-css.
+
+```bash
+npm install
+npm run dev
+# open http://localhost:8028
+```
+
+`npm run build` emits the release JavaScript and extracted CSS under `public/`.
