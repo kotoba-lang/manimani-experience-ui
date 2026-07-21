@@ -8,6 +8,7 @@
               :chat-hide-duration 180
               :chat-show-duration 220}
  :loom {:visible-mascots {:mobile 4 :desktop 8}
+         :visible-static-glyphs {:mobile 30 :desktop 60}
          :offscreen-animation :paused
          :cluster-transition 220
          :trail-progress-duration 240

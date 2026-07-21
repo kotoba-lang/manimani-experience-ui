@@ -14,11 +14,42 @@
          :mobile {:default :summary
                   :expand :clustered-loom
                   :cluster-by [:system :repo :state]
-                  :max-simultaneous-mascots 4}
+                  :max-simultaneous-mascots 4
+                  :max-visible-agent-glyphs 30}
          :desktop {:default :summary-with-critical-path
-                   :max-simultaneous-mascots 8}
+                   :max-simultaneous-mascots 8
+                   :max-visible-agent-glyphs 60}
          :offscreen-animation :paused
          :exit-paths [:header-back :system-back]}}
+
+ :density
+ {:semantic-zoom
+  {:z0 {:name :summary
+        :shows [:total :running :waiting :blocked]
+        :agent-representation :none}
+   :z1 {:name :cluster
+        :shows [:system :repo-count :state-count :critical-path]
+        :agent-representation :five-dot-wheel
+        :agents-per-cluster 5}
+   :z2 {:name :trail-grid
+        :shows [:agent :loop :repo :state :progress]
+        :agent-representation :compact-glyph
+        :row-height 32
+        :glyph-size 18}
+   :z3 {:name :focused-agent
+        :shows [:full-mascot :evidence :authority :dependencies :controls]
+        :agent-representation :kinetic-companion}}
+  :adaptive-breakpoints
+  [{:max-agents 8 :default-zoom :z2 :columns 1}
+   {:max-agents 20 :default-zoom :z1 :columns 2}
+   {:max-agents 40 :default-zoom :z1 :columns 3}
+   {:max-agents :unbounded :default-zoom :z0 :virtualized true}]
+  :animation-budget {:max-mobile 4
+                     :max-desktop 8
+                     :priority [:blocked :critical-path :selected :needs-approval :running]
+                     :others :static-state-glyph}
+  :ordering [:blocked-first :critical-path :needs-approval :running :waiting :queued]
+  :virtualization {:threshold 40 :overscan-rows 2}}
 
  :topology
  {:kind :dependency-dag
