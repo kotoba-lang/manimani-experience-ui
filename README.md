@@ -16,7 +16,7 @@
 6. [Computational measurement](docs/measurement.md) — 数理モデル、実験、release gate
 7. [Navigation and shell](docs/navigation-and-shell.md) — tab motion、Chat、Launch、Profile、Settings
 
-実装で参照する正規データは [`design/tokens.edn`](design/tokens.edn)、[`design/motion.edn`](design/motion.edn)、[`design/metrics.edn`](design/metrics.edn)、並列agent topologyの [`design/agent-loops.edn`](design/agent-loops.edn) です。主要4画面は [`design/manimani-app.svg`](design/manimani-app.svg)、Launch / Profile / Settingsは [`design/manimani-system.svg`](design/manimani-system.svg) です。変更理由は [`adr/0001-kinetic-companion-ui.md`](adr/0001-kinetic-companion-ui.md)、常時守る制約は [`rules/experience.rules.md`](rules/experience.rules.md) にあります。
+実装で参照する正規データは [`design/tokens.edn`](design/tokens.edn)、[`design/motion.edn`](design/motion.edn)、[`design/metrics.edn`](design/metrics.edn)、[`design/color-analysis.edn`](design/color-analysis.edn)、並列agent topologyの [`design/agent-loops.edn`](design/agent-loops.edn) です。主要4画面は [`design/manimani-app.svg`](design/manimani-app.svg)、Launch / Profile / Settingsは [`design/manimani-system.svg`](design/manimani-system.svg)、並列agent体験は [`design/manimani-loom.svg`](design/manimani-loom.svg) です。変更理由は [`adr/0001-kinetic-companion-ui.md`](adr/0001-kinetic-companion-ui.md)、常時守る制約は [`rules/experience.rules.md`](rules/experience.rules.md) にあります。
 
 ## 二層モデル
 

@@ -7,7 +7,8 @@
            :loop-outcome 0.12
            :companion-quality 0.04}
  :measures
- {:perceptual [:contrast-pass-rate :text-overflow-pass-rate :hierarchy-five-second-accuracy]
+ {:perceptual [:contrast-pass-rate :unapproved-color-pair-count
+               :text-overflow-pass-rate :hierarchy-five-second-accuracy]
   :interaction [:task-completion :target-error-rate :input-ack-latency :predicted-fitts-time
                 :keyboard-occlusion-rate :composer-reachability :accidental-tab-activation-rate]
   :observability [:context-accuracy :state-accuracy :next-action-accuracy :risk-accuracy]
@@ -20,6 +21,8 @@
                       :critical-path-discovery-rate]}
  :critical-gates
  {:false-done {:max 0}
+  :normal-text-contrast-failure {:max 0}
+  :state-conveyed-by-color-only {:max 0}
   :visibility-capability-confusion {:max 0}
   :unpreviewed-external-write {:max 0}
   :inaccessible-core-journey {:max 0}

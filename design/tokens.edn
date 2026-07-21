@@ -20,10 +20,10 @@
          :line "#D8DED9"
          :accent "#F2B84B"
          :accent-ink "#2D2108"
-         :info "#2677D8"
+         :info "#246FC7"
          :success "#23845B"
          :warning "#B86B00"
-         :danger "#C63C3C"
+         :danger "#B83232"
          :private "#7A4CC2"}
  :state {:visibility [:public :internal :private]
          :capability [:read :triage :write :maintain :admin]
