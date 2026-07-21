@@ -13,8 +13,9 @@
 3. [Experience UI](docs/experience-ui.md) — まにまに君、運動、手応え、報酬
 4. [GitHub journey](docs/github-journey.md) — Home / Inbox / Walk / Chatの動線
 5. [Sources](docs/sources.md) — 公式資料と、そこからの推論
+6. [Computational measurement](docs/measurement.md) — 数理モデル、実験、release gate
 
-実装で参照する正規データは [`design/tokens.edn`](design/tokens.edn) と [`design/motion.edn`](design/motion.edn) です。変更理由は [`adr/0001-kinetic-companion-ui.md`](adr/0001-kinetic-companion-ui.md)、常時守る制約は [`rules/experience.rules.md`](rules/experience.rules.md) にあります。
+実装で参照する正規データは [`design/tokens.edn`](design/tokens.edn)、[`design/motion.edn`](design/motion.edn)、[`design/metrics.edn`](design/metrics.edn) です。4画面のvisual masterは [`design/manimani-app.svg`](design/manimani-app.svg) です。変更理由は [`adr/0001-kinetic-companion-ui.md`](adr/0001-kinetic-companion-ui.md)、常時守る制約は [`rules/experience.rules.md`](rules/experience.rules.md) にあります。
 
 ## 二層モデル
 
