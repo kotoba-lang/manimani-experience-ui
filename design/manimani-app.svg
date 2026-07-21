@@ -12,16 +12,34 @@
     <symbol id="cow" viewBox="0 0 175 150">
       <g stroke="#17201b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M25 49C8 30 14 12 36 29M142 49c17-19 11-37-12-20" fill="#f2b84b"/><path d="M28 51C24 19 144 18 140 53l9 51c5 31-27 43-61 43s-66-12-62-43z" fill="#ffd76a"/><path d="m46 35-12-23 29 15m61 8 12-23-29 15" fill="#ffd76a"/><circle cx="64" cy="67" r="5" fill="#17201b" stroke="none"/><circle cx="113" cy="67" r="5" fill="#17201b" stroke="none"/><ellipse cx="88" cy="105" rx="40" ry="27" fill="#ffbeaa"/><circle cx="74" cy="104" r="3.5" fill="#17201b" stroke="none"/><circle cx="102" cy="104" r="3.5" fill="#17201b" stroke="none"/><path d="M77 118q11 9 22 0" fill="none"/></g>
     </symbol>
-    <symbol id="mascot" viewBox="0 0 300 170"><use href="#wheel" width="160" height="160"/><use href="#cow" x="125" y="8" width="175" height="150"/></symbol>
-    <symbol id="nav" viewBox="0 0 358 66"><rect width="358" height="66" rx="24" fill="#fffdf6" stroke="#17201b" stroke-width="2"/><g font-family="-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" font-size="9" font-weight="800" text-anchor="middle" fill="#637069"><text x="45" y="43">HOME</text><text x="134" y="43">INBOX</text><text x="224" y="43">WALK</text><text x="313" y="43">CHAT</text></g></symbol>
+    <symbol id="runnerCow" viewBox="0 0 150 92">
+      <g stroke="#17201b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="77" cy="47" rx="48" ry="29" fill="#ffd76a"/>
+        <path d="M111 31q22-15 31 6l-2 28q-2 18-24 14l-15-12z" fill="#ffd76a"/>
+        <path d="m120 28 2-16 10 14m5 4 9-10-2 18" fill="#ffd76a"/>
+        <path d="M31 38Q15 24 10 39" fill="none"/>
+        <ellipse cx="126" cy="59" rx="13" ry="10" fill="#ffbeaa"/>
+        <circle cx="124" cy="42" r="3" fill="#17201b"/>
+        <path d="M51 69 33 86M72 72l14 14M94 70 78 87M110 67l18 15" fill="none" stroke-width="6"/>
+        <path d="M52 29q10 10 21 1m7 33q10-12 19 0" fill="#40345f"/>
+      </g>
+    </symbol>
+    <symbol id="mascot" viewBox="0 0 200 180">
+      <circle cx="100" cy="88" r="78" fill="#fffdf6" stroke="#17201b" stroke-width="5"/>
+      <use href="#wheel" x="20" y="8" width="160" height="160"/>
+      <path d="M42 126q58 26 116 0" fill="none" stroke="#17201b" stroke-width="6" stroke-linecap="round"/>
+      <g class="runner"><use href="#runnerCow" x="42" y="63" width="120" height="74"/></g>
+      <path d="M34 145h20M146 145h20" stroke="#ed6e5c" stroke-width="5" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="nav" viewBox="0 0 358 66"><rect width="358" height="66" rx="24" fill="#fffdf6" stroke="#17201b" stroke-width="2"/><g font-family="'Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif" font-size="9" font-weight="800" text-anchor="middle" fill="#637069"><text x="45" y="43">HOME</text><text x="134" y="43">INBOX</text><text x="224" y="43">WALK</text><text x="313" y="43">CHAT</text></g></symbol>
     <style>
-      .wheel{transform-box:fill-box;transform-origin:center;animation:turn 8s linear infinite}.mascot:hover .wheel{animation-duration:2.8s}.mascot:active .wheel{animation-duration:.9s}.pulse{animation:pulse 2.4s ease-in-out infinite}@keyframes turn{to{transform:rotate(360deg)}}@keyframes pulse{50%{transform:scale(1.025)}}@media(prefers-reduced-motion:reduce){.wheel,.pulse{animation:none!important}}
+      .wheel{transform-box:fill-box;transform-origin:center;animation:turn 8s linear infinite}.runner{transform-box:fill-box;transform-origin:center bottom;animation:run .42s ease-in-out infinite alternate}.mascot:hover .wheel{animation-duration:2.8s}.mascot:hover .runner{animation-duration:.24s}.mascot:active .wheel{animation-duration:.9s}.mascot:active .runner{animation-duration:.12s}.pulse{animation:pulse 2.4s ease-in-out infinite}@keyframes turn{to{transform:rotate(360deg)}}@keyframes run{to{transform:translateY(-3px) rotate(-1.5deg)}}@keyframes pulse{50%{transform:scale(1.025)}}@media(prefers-reduced-motion:reduce){.wheel,.runner,.pulse{animation:none!important}}
     </style>
   </defs>
   <rect width="1680" height="924" fill="#17201b"/><text x="30" y="25" fill="#c9d0cb" font-family="-apple-system,sans-serif" font-size="10" font-weight="700" letter-spacing="1.4">MANIMANI EXPERIENCE UI / KINETIC COMPANION</text><text x="1650" y="25" fill="#c9d0cb" font-family="-apple-system,sans-serif" font-size="10" font-weight="700" text-anchor="end">FOUNDATION 70 · COMPANION 20 · REWARD 10</text>
 
   <!-- HOME -->
-  <g id="Home" transform="translate(30 40)" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" filter="url(#shadow)">
+  <g id="Home" transform="translate(30 40)" font-family="'Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif" filter="url(#shadow)">
     <rect width="390" height="844" rx="34" fill="url(#paper)" stroke="#17201b" stroke-width="3"/><rect width="390" height="844" rx="34" fill="url(#dots)"/>
     <text x="20" y="41" fill="#17201b" font-size="17" font-weight="850">manimani</text><rect x="301" y="21" width="69" height="27" rx="14" fill="#e8efe9"/><circle cx="317" cy="34" r="5" fill="#23845b"/><text x="331" y="38" fill="#435149" font-size="9" font-weight="750">READY</text>
     <text x="20" y="83" fill="#637069" font-size="9" font-weight="800" letter-spacing="1.2">HOME · ENTRUST THE FLOW</text><text x="20" y="119" fill="#17201b" font-size="28" font-weight="900">流れを、あずける。</text><text x="20" y="151" fill="#17201b" font-size="28" font-weight="900">随に、ひとつ前へ。</text><text x="20" y="179" fill="#637069" font-size="11">kotoba-lang / shell · PRIVATE · write</text>
@@ -34,7 +52,7 @@
   </g>
 
   <!-- INBOX -->
-  <g id="Inbox" transform="translate(440 40)" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" filter="url(#shadow)">
+  <g id="Inbox" transform="translate(440 40)" font-family="'Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif" filter="url(#shadow)">
     <rect width="390" height="844" rx="34" fill="#f7f8f5" stroke="#17201b" stroke-width="3"/><text x="20" y="41" fill="#17201b" font-size="17" font-weight="850">Inbox</text><rect x="328" y="21" width="42" height="27" rx="14" fill="#ed6e5c"/><text x="349" y="39" fill="#fff" font-size="10" font-weight="850" text-anchor="middle">5</text>
     <text x="20" y="86" fill="#17201b" font-size="27" font-weight="900">あなたの判断を待つもの</text><text x="20" y="114" fill="#637069" font-size="11">通知ではなく、次へ進むためのdecision。</text>
     <rect x="20" y="139" width="350" height="168" rx="22" fill="#fff" stroke="#c63c3c" stroke-width="2"/><rect x="35" y="155" width="70" height="22" rx="11" fill="#fdeae6"/><text x="70" y="170" fill="#c63c3c" font-size="8" font-weight="850" text-anchor="middle">BLOCKER</text><text x="35" y="205" fill="#17201b" font-size="16" font-weight="850">visual-testの差分を承認しますか？</text><text x="35" y="229" fill="#637069" font-size="10">shell / PR #148 · screenshot differs 2.4%</text><text x="35" y="252" fill="#637069" font-size="10">保留するとDesign loopが停止します</text><rect x="35" y="267" width="105" height="27" rx="10" fill="#f7f8f5" stroke="#17201b"/><text x="87" y="285" fill="#17201b" font-size="9" font-weight="750" text-anchor="middle">差分を見る</text><rect x="249" y="267" width="103" height="27" rx="10" fill="#17201b"/><text x="300" y="285" fill="#fff" font-size="9" font-weight="750" text-anchor="middle">判断する →</text>
@@ -45,7 +63,7 @@
   </g>
 
   <!-- WALK -->
-  <g id="Walk" transform="translate(850 40)" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" filter="url(#shadow)">
+  <g id="Walk" transform="translate(850 40)" font-family="'Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif" filter="url(#shadow)">
     <rect width="390" height="844" rx="34" fill="#f7f8f5" stroke="#17201b" stroke-width="3"/><text x="20" y="41" fill="#17201b" font-size="17" font-weight="850">Walk</text><text x="370" y="40" fill="#23845b" font-size="9" font-weight="800" text-anchor="end">DESIGN LOOP · RUNNING</text>
     <text x="20" y="82" fill="#637069" font-size="9" font-weight="800" letter-spacing="1.1">KOTOBA-LANG / SHELL / #142</text><text x="20" y="112" fill="#17201b" font-size="22" font-weight="900">螺旋を歩き、理解を深める</text><text x="20" y="138" fill="#637069" font-size="10">Observe → Frame → Change → Verify → Learn</text>
     <g transform="translate(15 154)"><path d="M180 118c-85 0-130-36-130-78 0-35 38-58 88-58 65 0 109 34 109 76 0 51-52 94-127 94-48 0-92-19-121-47" fill="none" stroke="#b7c3bb" stroke-width="4" stroke-dasharray="3 8"/><circle cx="50" cy="40" r="16" fill="#65ccb2" stroke="#17201b" stroke-width="2"/><text x="50" y="44" fill="#17201b" font-size="9" font-weight="850" text-anchor="middle">OBS</text><circle cx="138" cy="-18" r="16" fill="#65ccb2" stroke="#17201b" stroke-width="2"/><text x="138" y="-14" fill="#17201b" font-size="9" font-weight="850" text-anchor="middle">FRM</text><circle cx="247" cy="58" r="20" fill="#ffd76a" stroke="#17201b" stroke-width="3"/><text x="247" y="62" fill="#17201b" font-size="9" font-weight="900" text-anchor="middle">CHG</text><circle cx="120" cy="152" r="16" fill="#fff" stroke="#17201b" stroke-width="2"/><text x="120" y="156" fill="#637069" font-size="8" font-weight="850" text-anchor="middle">VRF</text><use class="mascot" href="#mascot" x="102" y="13" width="174" height="99"/></g>
@@ -56,7 +74,7 @@
   </g>
 
   <!-- CHAT -->
-  <g id="Chat" transform="translate(1260 40)" font-family="-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif" filter="url(#shadow)">
+  <g id="Chat" transform="translate(1260 40)" font-family="'Noto Sans JP',-apple-system,BlinkMacSystemFont,sans-serif" filter="url(#shadow)">
     <rect width="390" height="844" rx="34" fill="#f7f8f5" stroke="#17201b" stroke-width="3"/><text x="20" y="41" fill="#435149" font-size="11" font-weight="750">‹ Home</text><text x="195" y="41" fill="#17201b" font-size="17" font-weight="850" text-anchor="middle">Chat</text><circle cx="352" cy="34" r="14" fill="#ffd76a" stroke="#17201b" stroke-width="2"/><text x="352" y="39" fill="#17201b" font-size="12" font-weight="900" text-anchor="middle">m</text>
     <g transform="translate(20 62)"><rect width="350" height="38" rx="13" fill="#eef3ef"/><text x="14" y="24" fill="#435149" font-size="9" font-weight="750">kotoba-lang / shell</text><rect x="242" y="8" width="94" height="22" rx="11" fill="#eee6fa"/><text x="289" y="23" fill="#68459b" font-size="8" font-weight="850" text-anchor="middle">PRIVATE · WRITE</text></g>
     <text x="20" y="134" fill="#637069" font-size="9">YOU · 10:42</text><rect x="74" y="146" width="296" height="70" rx="20" fill="#17201b"/><text x="91" y="173" fill="#fff" font-size="11">visual-testのblockerを調べて、</text><text x="91" y="193" fill="#fff" font-size="11">安全なら修正案を作って。</text>

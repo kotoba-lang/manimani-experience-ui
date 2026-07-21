@@ -16,7 +16,11 @@
          :shake-impulse-max 0.28
          :soft-cap 0.85
          :friction 0.92
-         :settle-velocity 0.12}
+         :settle-velocity 0.12
+         :runner {:base-cycle 420
+                  :running-cycle-range [120 420]
+                  :bob-amplitude 3
+                  :contact-phase-locked true}}
  :celebration {:micro {:duration 240 :particles 3}
                :milestone {:duration 520 :particles 8}
                :receipt {:duration 900 :particles 14 :repeat 1}}

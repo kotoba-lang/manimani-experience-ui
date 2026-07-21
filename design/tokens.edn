@@ -7,7 +7,9 @@
         :radius-control 12
         :radius-card 20}
  :space {:1 4 :2 8 :3 12 :4 16 :5 24 :6 32 :7 48}
- :type {:body {:size 16 :line-height 1.5}
+ :type {:family {:jp "Noto Sans JP"
+                 :fallback "-apple-system, BlinkMacSystemFont, sans-serif"}
+        :body {:size 16 :line-height 1.5}
         :label {:size 13 :line-height 1.3 :weight 600}
         :title {:size 28 :line-height 1.15 :weight 700}
         :mono {:family "ui-monospace, SFMono-Regular, Menlo, monospace"}}
