@@ -51,6 +51,49 @@
   :ordering [:blocked-first :critical-path :needs-approval :running :waiting :queued]
   :virtualization {:threshold 40 :overscan-rows 2}}
 
+ :focused-agent-chat
+ {:entry [:agent-glyph :trail-grid-row :blocker-card :critical-path-node]
+  :route {:pattern "/chat/agents/:agent-id"
+          :preserve [:loom-filter :scroll-position :selected-loop]
+          :back-destination :loom}
+  :header {:required [:agent-id :loop-label :org :repo :authority :state]
+           :sticky true
+           :authority-not-color-only true}
+  :transcript
+  {:parts [:user-message :agent-message :reasoning-summary :plan
+           :tool-call :command :command-output :code :diff
+           :evidence :approval-preview :receipt]
+   :chronological true
+   :tool-default :collapsed
+   :running-tool-expanded true
+   :failed-tool-expanded true
+   :line-wrap {:prose true :code false :output :user-toggle}
+   :code {:font-family :ui-monospace
+          :line-numbers true
+          :copy true
+          :open-file true
+          :horizontal-scroll true
+          :max-default-lines 18
+          :expand-label "全文を表示"}
+   :diff {:modes [:unified :split]
+          :default-mobile :unified
+          :default-desktop :split
+          :context-lines 3
+          :syntax-highlight true}}
+  :composer {:tab-bar :hidden
+             :attachments [:context :file :image]
+             :actions [:send :interrupt :approve-preview]
+             :safe-area-fixed true}
+  :desktop {:layout :conversation-and-artifact
+            :conversation-ratio 0.42
+            :artifact-ratio 0.58}
+  :mobile {:layout :single-column
+           :artifact-presentation :inline-expandable}
+  :safety {:external-write :preview-required
+           :command-shows [:cwd :command :exit-code :duration]
+           :secrets :redacted
+           :private-code :no-notification-preview}}
+
  :topology
  {:kind :dependency-dag
   :planning {:direction :reverse-topological

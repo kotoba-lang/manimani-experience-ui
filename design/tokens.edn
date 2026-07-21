@@ -25,6 +25,18 @@
          :warning "#B86B00"
          :danger "#B83232"
          :private "#7A4CC2"}
+ :code {:canvas "#111813"
+        :surface "#19231C"
+        :text "#E8EEE9"
+        :muted "#AAB8AE"
+        :keyword "#C7A7FF"
+        :string "#9BE7D0"
+        :number "#FFD76A"
+        :addition-bg "#173D2A"
+        :addition "#A7E8BF"
+        :deletion-bg "#4A2222"
+        :deletion "#FFC0BA"
+        :focus "#65CCB2"}
  :state {:visibility [:public :internal :private]
          :capability [:read :triage :write :maintain :admin]
          :sensitivity [:public :internal :confidential :privileged]
