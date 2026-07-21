@@ -14,7 +14,10 @@
   :accessibility [:keyboard-completion :screen-reader-completion :zoom-completion :reduced-motion-parity]
   :trust-calibration [:appropriate-reliance :one-minus-brier :scope-comprehension :undo-availability]
   :loop-outcome [:verified-throughput :one-minus-rework-rate :blocker-release-rate :learning-gain]
-  :companion-quality [:motion-frame-stability :settling-quality :semantic-differential]}
+  :companion-quality [:motion-frame-stability :settling-quality :semantic-differential
+                      :five-second-state-accuracy :agent-find-time
+                      :agent-repo-confusion-rate :dependency-direction-error-rate
+                      :critical-path-discovery-rate]}
  :critical-gates
  {:false-done {:max 0}
   :visibility-capability-confusion {:max 0}
@@ -23,7 +26,9 @@
   :reduced-motion-state-loss {:max 0}}
  :chat-gates {:composer-occluded-by-keyboard {:max 0}
               :no-keyboard-dismiss-path {:max 0}
-              :no-chat-exit-path {:max 0}}
+              :no-chat-exit-path {:max 0}
+              :repo-write-conflict {:max 0}
+              :private-context-leak {:max 0}}
  :report {:composite :weighted-mean
           :critical-gates :non-compensatory
           :uncertainty :confidence-interval-95

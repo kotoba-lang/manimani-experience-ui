@@ -7,6 +7,12 @@
               :indicator :shared-pill
               :chat-hide-duration 180
               :chat-show-duration 220}
+ :loom {:visible-mascots {:mobile 4 :desktop 8}
+         :offscreen-animation :paused
+         :cluster-transition 220
+         :trail-progress-duration 240
+         :blocked-deceleration 420
+         :approval-face-user 180}
  :easing {:enter [0.2 0.8 0.2 1.0]
           :exit [0.4 0.0 1.0 1.0]
           :spring {:mass 1.0 :stiffness 210 :damping 22}}
