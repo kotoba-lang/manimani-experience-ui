@@ -3,7 +3,40 @@
             [reagent.dom.client :as rdom]
             [shadow.css :refer [css]]))
 
-(defonce state (r/atom {:tab :home :impulse 0 :selected-agent nil}))
+(defonce state (r/atom {:tab :home :impulse 0 :selected-agent nil
+                        :loops {} :agent-message nil}))
+(def agent-api "http://127.0.0.1:7780")
+(def repo-workspace "orgs/kotoba-lang/manimani-experience-ui")
+
+(defn post-json! [path body]
+  (-> (js/fetch (str agent-api path)
+                #js {:method "POST"
+                     :headers #js {"content-type" "application/json"}
+                     :body (js/JSON.stringify (clj->js body))})
+      (.then (fn [res]
+               (-> (.json res)
+                   (.then (fn [value]
+                            (let [result (js->clj value :keywordize-keys true)]
+                              (if (.-ok res) result
+                                  (throw (js/Error. (or (:error result) "Agent request failed"))))))))))))
+
+(defn run-loop! [loop-id]
+  (when-not (= :running (get-in @state [:loops loop-id :status]))
+    (swap! state assoc-in [:loops loop-id]
+           {:status :running :started-at (.toISOString (js/Date.))})
+    (-> (post-json! "/api/manimani/loop/run"
+                    {:repo "kotoba-lang/manimani-experience-ui"
+                     :loop loop-id
+                     :workspace repo-workspace
+                     :sessionId (str "experience-ui:" loop-id)})
+        (.then (fn [result]
+                 (swap! state assoc-in [:loops loop-id]
+                        {:status :complete :result result
+                         :finished-at (.toISOString (js/Date.))})
+                 (swap! state assoc :agent-message (get-in result [:message :text]))))
+        (.catch (fn [error]
+                  (swap! state assoc-in [:loops loop-id]
+                         {:status :failed :error (.-message error)}))))))
 
 (def $app (css {:min-height "100dvh" :background "radial-gradient(circle at 50% 4%,#fffdf5 0,#f7f8f5 42%,#eaf0eb 100%)" :padding "24px 18px 112px"}
                ["@media (min-width: 760px)" {:padding "32px 32px 120px"}]))
@@ -31,7 +64,8 @@
 (def $pill (css {:font-size "11px" :font-weight "800" :border-radius "999px" :padding "5px 9px" :background "#edf2ee" :white-space "nowrap"}))
 (def $danger (css {:background "#fff1ee" :color "#922f2f"}))
 (def $button (css {:border "1.5px solid #17201b" :border-radius "14px" :min-height "44px" :padding "9px 14px" :font-weight "800" :color "#17201b" :background "#fff" :cursor "pointer" :box-shadow "0 3px 0 #17201b"}
-                 ["&:active" {:transform "translateY(2px)" :box-shadow "0 1px 0 #17201b"}]))
+                 ["&:active" {:transform "translateY(2px)" :box-shadow "0 1px 0 #17201b"}]
+                 ["&:disabled" {:cursor "not-allowed" :opacity ".55" :box-shadow "none"}]))
 (def $primary (css {:background "#ffd76a"}))
 (def $tabs (css {:position "fixed" :z-index "20" :left "50%" :bottom "max(14px,env(safe-area-inset-bottom))" :transform "translateX(-50%)" :display "grid" :grid-template-columns "repeat(4,1fr)" :gap "4px" :width "min(calc(100% - 28px),520px)" :padding "6px" :border "1px solid rgba(23,32,27,.16)" :border-radius "22px" :background "rgba(255,255,255,.86)" :box-shadow "0 18px 48px rgba(23,32,27,.18)" :backdrop-filter "blur(22px) saturate(1.3)"}))
 (def $tab (css {:position "relative" :border "0" :border-radius "16px" :min-height "54px" :background "transparent" :display "grid" :place-items "center" :gap "2px" :font-size "11px" :font-weight "800" :color "#637069" :cursor "pointer" :transition "transform .22s cubic-bezier(.2,.8,.2,1),background .22s"}))
@@ -46,8 +80,8 @@
                 ["&:focus" {:border-color "#65ccb2" :box-shadow "0 0 0 3px rgba(101,204,178,.15)"}]))
 
 (defn wheel-svg [impulse]
-  (let [speed (max 2.5 (- 8.3 (* impulse .7)))
-        cow-speed (max .13 (- .42 (* impulse .03)))]
+  (let [speed (max 2.5 (- 8.3 (* impulse 0.7)))
+        cow-speed (max 0.13 (- 0.42 (* impulse 0.03)))]
     [:svg {:viewBox "0 0 320 320" :role "img" :aria-label "まにまに君が大きなマニ車を走っています"
            :style {"--wheel-speed" (str speed "s") "--cow-speed" (str cow-speed "s")}}
      [:g.wheel-spin
@@ -95,18 +129,49 @@
 (defn walk []
   [:<> [section-title "Walk · system dynamics" "流れと、詰まりを歩く" "複数agentのloopを逆トポロジー順で辿り、blockerの上流原因から解きます。"]
    [:div {:class $grid}
-    (for [[name status detail] [["BMC lean loop" "running" "Issue #91 → Agent → PR #104"] ["Design loop" "blocked" "承認待ち · color contrast"] ["Mail intake" "running" "12 messages → 3 issues"] ["Release loop" "queued" "PR #482 checks待ち"]]]
-      ^{:key name} [:article {:class $card} [:div {:class $row} [:span {:class $eyebrow} name] [:span {:class (str $pill (when (= status "blocked") (str " " $danger)))} status]] [:h2 {:class $card-title} detail] [:div {:style {:height "8px" :border-radius "8px" :background "#edf2ee" :overflow "hidden"}} [:div {:style {:width (if (= status "blocked") "44%" "72%") :height "100%" :background (if (= status "blocked") "#b83232" "#23845b")}}]] [:div {:class $row :style {:margin-top "16px"}} [:span {:class $caption} (if (= status "blocked") "Blocker: human approval" "まにまに君が走っています")] [:button {:class $button :on-click #(swap! state assoc :tab :chat :selected-agent name)} "Chat"]]])]])
+    (for [[loop-id name fallback detail] [["bmc" "BMC lean loop" "idle" "Issue #91 → Agent → PR #104"]
+                                          ["design" "Design loop" "idle" "Observe → Frame → Prototype → Verify"]
+                                          ["system-dynamics" "System dynamics" "idle" "Stock → Flow → Delay → Feedback"]
+                                          ["lean" "Release loop" "idle" "Build → Measure → Learn"]]
+          :let [run (get-in @state [:loops loop-id])
+                status (name (or (:status run) (keyword fallback)))
+                failed? (= status "failed")
+                running? (= status "running")]]
+      ^{:key name} [:article {:class $card}
+                    [:div {:class $row} [:span {:class $eyebrow} name]
+                     [:span {:class (str $pill (when failed? (str " " $danger)))} status]]
+                    [:h2 {:class $card-title} detail]
+                    [:div {:role "progressbar"
+                           :aria-label (str name " progress")
+                           :aria-valuemin 0
+                           :aria-valuemax 100
+                           :aria-valuenow (when-not running? (if (= status "complete") 100 0))
+                           :style {:height "8px" :border-radius "8px" :background "#edf2ee" :overflow "hidden"}}
+                     [:div {:style {:width (cond running? "64%" (= status "complete") "100%" :else "8%")
+                                    :height "100%" :transition "width .4s ease"
+                                    :background (if failed? "#b83232" "#23845b")}}]]
+                    [:div {:class $row :style {:margin-top "16px"}}
+                     [:span {:class $caption :role "status" :aria-live "polite"}
+                      (cond running? "Codex CLIが1 bounded turnを実行中"
+                            (= status "complete") "Turn完了 · Chatでreportを確認"
+                            failed? (str "実行に失敗しました: " (:error run))
+                            :else "開始するとworkspace-writeで実行")]
+                     [:div {:style {:display "flex" :gap "8px"}}
+                      [:button {:class $button :disabled running? :aria-busy running? :on-click #(run-loop! loop-id)}
+                       (if running? "Running…" "Start")]
+                      [:button {:class $button :on-click #(swap! state assoc :tab :chat :selected-agent name)} "Chat"]]]])]])
 
 (defn chat []
   [:section {:class $chat}
    [:header {:class $chat-head}
     [:button {:class $button :on-click #(swap! state assoc :tab :walk)} "←"]
     [:div {:class $mark} "牛"] [:div [:strong (or (:selected-agent @state) "manimani agent")] [:div {:class $caption :style {:color "#aab8ae"}} "codex cli · repo write · running"]]]
-   [:div {:class $messages}
+    [:div {:class $messages}
     [:div {:class $message} "対象repoを確認しました。Issueを作成し、実装loopを開始できます。"]
     [:div {:class $message} [:strong "Agent"] " まずCLJS runtimeを一本化します。" [:pre {:class $code} "src/main/manimani/ui.cljs\n+ shadow-cljs browser target\n+ shadow-css extracted styles\n✓ build boundary ready"]]
-    [:div {:class $message :style {:justify-self "end" :background "#29443a"}} "Issueを作って、PRまで進めて。"]]
+    [:div {:class $message :style {:justify-self "end" :background "#29443a"}} "Issueを作って、PRまで進めて。"]
+    (when-let [message (:agent-message @state)]
+      [:div {:class $message} [:strong "Latest loop report"] [:pre {:class $code} message]])]
    [:form {:class $composer :on-submit (fn [e] (.preventDefault e))}
     [:input {:class $input :aria-label "Agentへのメッセージ" :placeholder "repo、issue、変更内容を入力…"}]
     [:button {:class (str $button " " $primary) :type "submit"} "送信"]]])
@@ -126,4 +191,11 @@
 
 (defonce root (atom nil))
 (defn ^:dev/after-load render! [] (when @root (rdom/render @root [app])))
-(defn init! [] (reset! root (rdom/create-root (.getElementById js/document "app"))) (render!))
+(defn init! []
+  (reset! root (rdom/create-root (.getElementById js/document "app")))
+  (render!)
+  ;; One bounded loop after the native WebView launches. sessionStorage avoids
+  ;; duplicate Codex turns on shadow-cljs hot reload within the same window.
+  (when-not (.getItem js/sessionStorage "manimani.design-loop.started")
+    (.setItem js/sessionStorage "manimani.design-loop.started" "true")
+    (js/setTimeout #(run-loop! "design") 900)))
