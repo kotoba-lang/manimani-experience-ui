@@ -16,6 +16,16 @@ UI/UXを単一の美的点数へ潰すことはできません。測る対象を
 
 同時に競合する選択肢 `n` を数えます。ただしprimary actionが視覚的に優先される場合は、各選択確率 `pᵢ` を用いて `H = -Σ pᵢ log2 pᵢ` とし、`RT = a + bH` で評価します。
 
+### Keyboard and chat ergonomics
+
+software keyboard表示時の実効viewportを `Vusable`、表示前を `Vtotal` とします。
+
+`usable viewport ratio = Vusable / Vtotal`
+
+composerと直近messageがkeyboardに隠れたframe率を `keyboard occlusion rate` として測り、0をgateにします。Chatではtab barを退避し、composerへfocusして送信するまでのtask time、tabへのaccidental activation rate、keyboard dismiss成功率、Chatから戻る経路の発見率、layout shiftを比較します。
+
+tab常時表示案と自動退避案を同じ端末・同じtaskでA/B比較します。画面が広く見えるかではなく、入力完遂、誤操作、戻りやすさで判断します。
+
 ### Contrast and legibility
 
 WCAGのrelative luminanceからcontrast ratioを計算し、本文4.5:1、大きな文字3:1を最低線にします。文字サイズ、行長、zoom時overflowも機械監査します。
@@ -93,6 +103,7 @@ release gate用には0–100の `MEUI score` を使えます。
 - unpreviewed external write: 0件
 - keyboard/assistive technologyで完遂不能: 0件
 - reduced-motionでstate欠落: 0件
+- keyboardがcomposerまたは実行確認を隠す: 0件
 
 ## Experiment design
 

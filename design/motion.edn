@@ -1,5 +1,12 @@
 {:meta {:version "0.1.0" :units {:duration :ms :angular-velocity :turns-per-second}}
  :response {:input-max 100 :micro 140 :standard 240 :deliberate 420}
+ :navigation {:selection-duration 220
+              :content-crossfade 160
+              :active-scale 1.04
+              :icon-lift -2
+              :indicator :shared-pill
+              :chat-hide-duration 180
+              :chat-show-duration 220}
  :easing {:enter [0.2 0.8 0.2 1.0]
           :exit [0.4 0.0 1.0 1.0]
           :spring {:mass 1.0 :stiffness 210 :damping 22}}

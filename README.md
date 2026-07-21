@@ -14,8 +14,9 @@
 4. [GitHub journey](docs/github-journey.md) — Home / Inbox / Walk / Chatの動線
 5. [Sources](docs/sources.md) — 公式資料と、そこからの推論
 6. [Computational measurement](docs/measurement.md) — 数理モデル、実験、release gate
+7. [Navigation and shell](docs/navigation-and-shell.md) — tab motion、Chat、Launch、Profile、Settings
 
-実装で参照する正規データは [`design/tokens.edn`](design/tokens.edn)、[`design/motion.edn`](design/motion.edn)、[`design/metrics.edn`](design/metrics.edn) です。4画面のvisual masterは [`design/manimani-app.svg`](design/manimani-app.svg) です。変更理由は [`adr/0001-kinetic-companion-ui.md`](adr/0001-kinetic-companion-ui.md)、常時守る制約は [`rules/experience.rules.md`](rules/experience.rules.md) にあります。
+実装で参照する正規データは [`design/tokens.edn`](design/tokens.edn)、[`design/motion.edn`](design/motion.edn)、[`design/metrics.edn`](design/metrics.edn) です。主要4画面は [`design/manimani-app.svg`](design/manimani-app.svg)、Launch / Profile / Settingsは [`design/manimani-system.svg`](design/manimani-system.svg) です。変更理由は [`adr/0001-kinetic-companion-ui.md`](adr/0001-kinetic-companion-ui.md)、常時守る制約は [`rules/experience.rules.md`](rules/experience.rules.md) にあります。
 
 ## 二層モデル
 

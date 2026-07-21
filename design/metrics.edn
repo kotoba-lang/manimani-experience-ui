@@ -8,7 +8,8 @@
            :companion-quality 0.04}
  :measures
  {:perceptual [:contrast-pass-rate :text-overflow-pass-rate :hierarchy-five-second-accuracy]
-  :interaction [:task-completion :target-error-rate :input-ack-latency :predicted-fitts-time]
+  :interaction [:task-completion :target-error-rate :input-ack-latency :predicted-fitts-time
+                :keyboard-occlusion-rate :composer-reachability :accidental-tab-activation-rate]
   :observability [:context-accuracy :state-accuracy :next-action-accuracy :risk-accuracy]
   :accessibility [:keyboard-completion :screen-reader-completion :zoom-completion :reduced-motion-parity]
   :trust-calibration [:appropriate-reliance :one-minus-brier :scope-comprehension :undo-availability]
@@ -20,6 +21,9 @@
   :unpreviewed-external-write {:max 0}
   :inaccessible-core-journey {:max 0}
   :reduced-motion-state-loss {:max 0}}
+ :chat-gates {:composer-occluded-by-keyboard {:max 0}
+              :no-keyboard-dismiss-path {:max 0}
+              :no-chat-exit-path {:max 0}}
  :report {:composite :weighted-mean
           :critical-gates :non-compensatory
           :uncertainty :confidence-interval-95
