@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1270" height="924" viewBox="0 0 1270 924">
   <defs>
     <filter id="s"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#17201b" flood-opacity=".18"/></filter>
-    <symbol id="g" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#40345f" stroke="#17201b" stroke-width="1.5"/><path d="M12 3v18M3 12h18M6 6l12 12M18 6 6 18" stroke="#ffd76a" stroke-width="1.4"/><ellipse cx="12" cy="15" rx="6" ry="3.5" fill="#ffd76a" stroke="#17201b" stroke-width="1"/><circle cx="17" cy="14" r="2.5" fill="#ffd76a" stroke="#17201b" stroke-width="1"/></symbol>
+    <symbol id="g" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="#40345f" stroke="#17201b" stroke-width="1.2"/><path d="M12 2.5v19M2.5 12h19M5 5l14 14M19 5 5 19" stroke="#ffd76a" stroke-width="1"/><g stroke="#17201b" stroke-width=".8" stroke-linejoin="round"><path d="M6.5 10q-2-3 1-4l2 2q2.5-1.5 5 0l2-2q3 1 1 4l1 7q0 5-6.5 5T5.5 17z" fill="#ffd76a"/><circle cx="9.5" cy="12" r=".8" fill="#17201b"/><circle cx="14.5" cy="12" r=".8" fill="#17201b"/><ellipse cx="12" cy="16.3" rx="3.7" ry="2.7" fill="#ffbeaa"/><circle cx="10.8" cy="16.2" r=".4"/><circle cx="13.2" cy="16.2" r=".4"/></g></symbol>
     <style>[fill="#c63c3c" i]{fill:#b83232}[stroke="#c63c3c" i]{stroke:#b83232}.active{transform-box:fill-box;transform-origin:center;animation:p .9s ease-in-out infinite alternate}@keyframes p{to{transform:scale(1.12)}}@media(prefers-reduced-motion:reduce){.active{animation:none}}</style>
   </defs>
   <rect width="1270" height="924" fill="#17201b"/><text x="30" y="25" fill="#c9d0cb" font-family="'Noto Sans JP',sans-serif" font-size="10" font-weight="800" letter-spacing="1.3">MANIMANI LOOM / ADAPTIVE DENSITY · 30 AGENTS</text>
